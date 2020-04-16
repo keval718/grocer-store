@@ -2,6 +2,7 @@ import React, { Fragment, useState, Component } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import decode from 'jwt-decode';
+import '../App.css'
 
 export default class Login extends Component{
 
@@ -58,36 +59,56 @@ export default class Login extends Component{
 
     render(){
         return (
-        <div>
+        // <div>
             
-            <p>Login In</p>
-            <form onSubmit={this.onSubmit}>
+        //     <p>Login In</p>
+        //     <form onSubmit={this.onSubmit}>
               
-              <div>
-                <input
-                  type='email'
-                  placeholder='Email Address'
-                  name='email'
-                  value={this.state.email}
-                  onChange={this.onChangeEmail}
-                />
-              </div>
-              <div>
-                <input
-                  type='password'
-                  placeholder='Password'
-                  name='password'
+        //       <div>
+        //         <input
+        //           type='email'
+        //           placeholder='Email Address'
+        //           name='email'
+        //           value={this.state.email}
+        //           onChange={this.onChangeEmail}
+        //         />
+        //       </div>
+        //       <div>
+        //         <input
+        //           type='password'
+        //           placeholder='Password'
+        //           name='password'
               
-                  value={this.state.password}
-                  onChange={this.onChangePassword}
-                />
-              </div>
+        //           value={this.state.password}
+        //           onChange={this.onChangePassword}
+        //         />
+        //       </div>
           
             
-              <input type='submit' value='Register' />
-            </form>
+        //       <input type='submit' value='Register' />
+        //     </form>
            
-            </div>
+        //     </div>
+        
+        <div class="form-style-10">
+              
+        <h1>Log In</h1>
+<form  onSubmit={this.onSubmit}>
+      <div class="section"></div>
+    <div class="inner-wrap">
+        <label>Email Address <input type="email" name="field1" value={this.state.email}
+          onChange={this.onChangeEmail}/></label>
+        <label>Password <input type="password" name="field2" value={this.state.password}
+          onChange={this.onChangePassword}/></label>
+          <p >Not Register Yet?</p><Link to="/register">  Click Here</Link>
+  </div>
+
+
+<div class="button-section">
+<input type="submit" name="Log In" value="LogIn" />
+</div>
+</form>
+</div>
         );
         }
 }
