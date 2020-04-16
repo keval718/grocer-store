@@ -21,7 +21,7 @@ export default class EditProduct extends Component{
     }
 
     componentDidMount() {
-        axios.get('http://grocer-server.herokuapp.com/api/products/'+this.props.match.params.id)
+        axios.get('https://grocer-server.herokuapp.com/api/products/'+this.props.match.params.id)
           .then(response => {
             this.setState({
             pname:response.data.pname,
@@ -59,7 +59,7 @@ export default class EditProduct extends Component{
         }
         
        // console.log(store);
-        axios.put('http://localhost:5000/api/products/'+this.props.match.params.id,product)
+        axios.put('https://grocer-server.herokuapp.com/api/products/'+this.props.match.params.id,product)
         .then(res=>console.log(res.data));
         //this will send to home page
         window.location="/";

@@ -45,7 +45,7 @@ export default class ProductList extends Component
 
     }
     componentDidMount(){
-        axios.get('http://grocer-server.herokuapp.com/api/orders')
+        axios.get('https://grocer-server.herokuapp.com/api/orders')
         .then(res=>{
             this.setState({
                 product:res.data
@@ -65,7 +65,7 @@ export default class ProductList extends Component
     OnDelete(id)
     {
       console.log("Here");
-      axios.delete('http://grocer-server.herokuapp.com/api/orders/' + id)
+      axios.delete('https://grocer-server.herokuapp.com/api/orders/' + id)
           .then(res=>{
             
               console.log(res.data + "Deleted");

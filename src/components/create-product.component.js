@@ -44,7 +44,7 @@ export default class CreateProduct extends Component {
         }
 
         // console.log(store);
-        axios.post('http://grocer-server.herokuapp.com/api/products', product)
+        axios.post('https://grocer-server.herokuapp.com/api/products', product)
             .then(res => console.log(res.data));
         //this will send to home page
         window.location="/";
