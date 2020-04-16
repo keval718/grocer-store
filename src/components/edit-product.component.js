@@ -11,10 +11,16 @@ export default class EditProduct extends Component{
         
         this.onChangeName=this.onChangeName.bind(this);
         this.onChangeAmount=this.onChangeAmount.bind(this);
+        this.onChangeId = this.onChangeId.bind(this);
+        this.onChangeImg = this.onChangeImg.bind(this);
+        this.onChangeDesc = this.onChangeDesc.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
        this.state={
-            pname:"",
-            amount:0
+            name:"",
+            price:0,
+            id:"",
+            img:"",
+            desc:""
         }
      
 
@@ -24,8 +30,11 @@ export default class EditProduct extends Component{
         axios.get('https://grocer-server.herokuapp.com/api/products/'+this.props.match.params.id)
           .then(response => {
             this.setState({
-            pname:response.data.pname,
-            amount:response.data.amount
+            name:response.data.name,
+            price:response.data.price,
+            id:response.data.id,
+            img:response.data.img,
+            desc:response.data.desc
             })
             console.log(response    );
           })
@@ -37,24 +46,45 @@ export default class EditProduct extends Component{
 
     onChangeName(e){
         this.setState({
-            pname:e.target.value
+            name:e.target.value
         })
     }
     onChangeAmount(e){
         this.setState({
-            amount:e.target.value
+            price:e.target.value
         })
     }
-    
+    onChangeImg(e) {
+        this.setState({
+            img: e.target.value
+        })
+    }
+
+    onChangeDesc(e) {
+        this.setState({
+            desc: e.target.value
+        })
+    }
+
+    onChangeId(e) {
+        this.setState({
+            id: e.target.value
+        })
+    }
+
     onSubmit(e)
     {
         e.preventDefault();
         console.log(this.state.pname);
         const product={
            
-            pname:this.state.pname,
-            amount:this.state.amount,
-            fk_store_id:"2"
+            
+            id:this.state.id,
+            name: this.state.name,
+            desc:this.state.desc,
+            price: this.state.price,
+            img:this.state.img
+          
             
         }
         
@@ -62,20 +92,20 @@ export default class EditProduct extends Component{
         axios.put('https://grocer-server.herokuapp.com/api/products/'+this.props.match.params.id,product)
         .then(res=>console.log(res.data));
         //this will send to home page
-        window.location="/";
+        window.location="/productList";
     }
     render()
     {
         return(
             <div>
-                <h3>Add New Store</h3>
+                <h3>Update Products</h3>
                 <form onSubmit={this.onSubmit}>
                 <div className="form-group"> 
           <label>Name: </label>
           <input  type="text"
               required
               className="form-control"
-              value={this.state.pname}
+              value={this.state.name}
               onChange={this.onChangeName}
               />
         </div>
@@ -84,12 +114,39 @@ export default class EditProduct extends Component{
           <input 
               type="text" 
               className="form-control"
-              value={this.state.amount}
+              value={this.state.price}
               onChange={this.onChangeAmount}
               />
         </div>
         <div className="form-group">
-          <input type="submit" value="Add Store" className="btn btn-primary" />
+                        <label>Description: </label>
+                        <input
+                            type="text"
+                            className="form-control"
+                            value={this.state.desc}
+                            onChange={this.onChangeDesc}
+                        />
+                    </div>
+                    <div className="form-group">
+                        <label>Image Url: </label>
+                        <input
+                            type="text"
+                            className="form-control"
+                            value={this.state.img}
+                            onChange={this.onChangeImg}
+                        />
+                    </div>
+                    <div className="form-group">
+                        <label>id: </label>
+                        <input
+                            type="text"
+                            className="form-control"
+                            value={this.state.id}
+                            onChange={this.onChangeId}
+                        />
+                    </div>
+        <div className="form-group">
+          <input type="submit" value="Update Product" className="btn btn-primary" />
         </div>
       </form>
             </div>

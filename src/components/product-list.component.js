@@ -4,8 +4,9 @@ import { Link } from 'react-router-dom';
 
 const Product = props => (
     <tr>
-      <td>{props.product.pname}</td>
-       <td>{props.product.amount}</td>
+      <td>{props.product.name}</td>
+       <td>{props.product.price}</td>
+     {/* <td>{props.product.quantity}</td> */}
       
       
       <td>
@@ -32,6 +33,7 @@ export default class ProductList extends Component
             this.setState({
                 product:res.data
             })
+            console.log(this.state.product);
         })
         .catch((error)=>{
             console.log(error);
